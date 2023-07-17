@@ -1,0 +1,24 @@
+# Project
+dist
+node_modules
+logs
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+.env.*
+!.env.example
+
+# JetBrains
+.fleet
+.idea
+
+# VS Code
+.vscode
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
