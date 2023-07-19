@@ -11,6 +11,10 @@ export default defineNuxtConfig({
         lang: 'en',
       },
     },
+    layoutTransition: {
+      name: 'layout',
+      mode: 'default',
+    },
   },
   css: ['@/assets/styles/_colors.scss', '@/assets/styles/_variables.scss'],
   vite: {
@@ -18,6 +22,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData: `
+            @import "@/assets/styles/functions/_color-opacity.scss";
             @import "@/assets/styles/mixins/_dynamic-sizes.scss";
             @import "@/assets/styles/mixins/_screens.scss";
             @import "@/assets/styles/mixins/_widths.scss";
@@ -25,6 +30,17 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+  modules: [
+    [
+      '@pinia/nuxt',
+      {
+        autoImports: [['defineStore', 'definePiniaStore']],
+      },
+    ],
+  ],
+  imports: {
+    dirs: ['./stores'],
   },
   devtools: { enabled: true },
   typescript: {

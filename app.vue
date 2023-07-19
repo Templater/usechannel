@@ -5,10 +5,53 @@ useHead({
     'data-theme': 'dark',
   },
 })
+
+const systemStore = useSystemStore()
+
+const defaultLayoutScale = computed(
+  () => window.innerHeight / systemStore.layoutTransitionTarget.height
+)
+const defaultLayoutTranslateX = computed(
+  () =>
+    `${
+      (window.innerWidth -
+        systemStore.layoutTransitionTarget.right -
+        systemStore.layoutTransitionTarget.left) /
+      2 /
+      16
+    }rem`
+)
+const defaultLayoutOffsetY = computed(
+  () =>
+    `${
+      (window.innerHeight -
+        systemStore.layoutTransitionTarget.bottom -
+        systemStore.layoutTransitionTarget.top) /
+      2 /
+      16
+    }rem`
+)
+const appLayoutScale = computed(() =>
+  systemStore.isLayoutTransitionTargetReady()
+    ? systemStore.layoutTransitionTarget.height / window.innerHeight
+    : 1
+)
+const appLayoutOffsetY = computed(() =>
+  systemStore.isLayoutTransitionTargetReady()
+    ? `${
+        ((systemStore.layoutTransitionTarget.top -
+          (window.innerHeight * appLayoutScale.value) / 2) *
+          2) /
+        16
+      }rem`
+    : 0
+)
 </script>
 
 <template>
-  <NuxtLayout />
+  <div class="app-container">
+    <NuxtLayout />
+  </div>
 </template>
 
 <style lang="scss">
@@ -104,5 +147,36 @@ h5 {
 h6 {
   line-height: var(--medium-line-height);
   font-size: var(--medium-font-size);
+}
+
+.app-container {
+  height: 100%;
+
+  #default-layout,
+  #app-layout {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: var(--default-transition);
+  transition-duration: 1.25s;
+}
+
+#default-layout.layout-enter-from,
+#default-layout.layout-leave-to {
+  z-index: 100;
+  opacity: 0;
+  transform: scale(v-bind(defaultLayoutScale))
+    translate(v-bind(defaultLayoutTranslateX), v-bind(defaultLayoutOffsetY));
+}
+
+#app-layout.layout-enter-from,
+#app-layout.layout-leave-to {
+  opacity: 0;
+  transform: scale(v-bind(appLayoutScale)) translateY(v-bind(appLayoutOffsetY));
 }
 </style>
