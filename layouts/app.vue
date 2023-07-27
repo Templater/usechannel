@@ -2,6 +2,7 @@
 
 <template>
   <div id="app-layout">
+    <Header />
     <main>
       <NuxtPage />
     </main>
@@ -15,6 +16,7 @@
 
   main {
     height: 100%;
+    margin-top: var(--header-height);
   }
 }
 </style>

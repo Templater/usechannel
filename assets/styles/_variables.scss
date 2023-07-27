@@ -1,4 +1,5 @@
 :root {
+  // General
   --small-shadow: 0 0.0625rem 0.125rem 0 rgb(0 0 0 / 0.05);
   --default-shadow: 0 0.0625rem 0.1875rem 0 rgb(0 0 0 / 0.1),
     0 0.0625rem 0.125rem -0.0625rem rgb(0 0 0 / 0.1);
@@ -51,5 +52,15 @@
     --2xl-line-height: 4rem;
     --3xl-line-height: 5.5rem;
     --4xl-line-height: 8rem;
+  }
+
+  // Header
+  --header-height: 6.5rem;
+  --header-group-height: 4rem;
+  --header-group-icon-height: 1.25rem;
+
+  @include medium-screen {
+    --header-group-height: 4.5rem;
+    --header-group-icon-height: 1.625rem;
   }
 }

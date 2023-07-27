@@ -53,7 +53,6 @@ defineProps({
   }
 
   &[data-variant='transparent'] {
-    backdrop-filter: blur(var(--default-blur));
     background: transparent;
 
     &:hover {

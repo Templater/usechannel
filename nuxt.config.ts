@@ -1,3 +1,5 @@
+import svgLoader from 'vite-svg-loader'
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -30,6 +32,11 @@ export default defineNuxtConfig({
         },
       },
     },
+    plugins: [
+      svgLoader({
+        svgo: false,
+      }),
+    ],
   },
   modules: [
     [

@@ -7,6 +7,9 @@
 
   --white-themed: #fff;
   --black-themed: #272727;
+
+  --primary-color: var(--green);
+  --secondary-color: var(--orange);
 }
 
 body[data-theme='light'] {
