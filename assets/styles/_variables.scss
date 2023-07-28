@@ -55,11 +55,12 @@
   }
 
   // Header
-  --header-height: 6.5rem;
+  --header-height: 6rem;
   --header-group-height: 4rem;
   --header-group-icon-height: 1.25rem;
 
   @include medium-screen {
+    --header-height: 6.5rem;
     --header-group-height: 4.5rem;
     --header-group-icon-height: 1.625rem;
   }
